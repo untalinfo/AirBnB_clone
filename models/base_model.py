@@ -14,13 +14,18 @@ class BaseModel:
     name = None
     my_number = 0
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """
         Initialize of base model class
         """
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.datetime.now()
-        self.updated_at = datetime.datetime.now()
+        if kwargs is not None:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.datetime.now()
+            self.updated_at = datetime.datetime.now()
+        else:
+            for key, value in kwargs.items():
+                if key == "created_at" or key == "updated_at":
+                    value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
 
     def __str__(self):
         """

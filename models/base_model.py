@@ -53,8 +53,8 @@ class BaseModel:
         dic = {}
         dic["__class__"] = str(type(self).__name__)
         dic['id'] = self.id
-        dic["my_number"] = self.my_number
-        dic["name"] = self.name
+        #dic["my_number"] = self.my_number
+        #dic["name"] = self.name
         dic["updated_at"] = self.updated_at.isoformat()
         dic["created_at"] = self.created_at.isoformat()
         return dic

@@ -11,14 +11,12 @@ class BaseModel:
     This class defines attributes or methods for
     other classes
     """
-    name = None
-    my_number = 0
 
     def __init__(self, *args, **kwargs):
         """
         Initialize of base model class
         """
-        if kwargs is not None:
+        if kwargs:
             for key, value in kwargs.items():
                 if key == "created_at" or key == "updated_at":
                     value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
@@ -43,7 +41,7 @@ class BaseModel:
         """
         Update the public instance updated_at to current
         """
-        self.updated_at = datetime.datetime.now()
+        self.updated_at = datetime.now()
 
     def to_dict(self):
         """

@@ -3,6 +3,7 @@ import json
 import os
 from models.base_model import BaseModel
 class FileStorage:
+    
     __file_path = "file.json"
     __objects = {}
 
@@ -22,10 +23,10 @@ class FileStorage:
             json.dump(j_objects, file)
 
     def reload(self):
-        if os.path.isfile(FileStorage.__file_path) is True:
+        try:
             with open(FileStorage.__file_path, 'r+') as my_file:
                 data = json.loads(my_file.read())
                 for key, values in data.items():
-                    FileStorage.__objects[key] = values
-        else:
+                    FileStorage.__objects[key] = BaseModel(**values)
+        except:
             pass

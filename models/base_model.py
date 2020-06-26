@@ -2,7 +2,7 @@
 """
 Module Classe base for airbnb
 """
-import uuid
+from uuid import uuid4
 from datetime import datetime
 import models
 
@@ -24,7 +24,7 @@ class BaseModel:
                 if key != "__class__":
                     setattr(self, key, value)
         else:
-            self.id = str(uuid.uuid4())
+            self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
             models.storage.new(self)
@@ -50,11 +50,10 @@ class BaseModel:
         """
         Generate a dictionary of the class
         """
-        dic = {}
-        dic["__class__"] = str(type(self).__name__)
-        dic['id'] = self.id
-        dic["my_number"] = self.my_number
-        dic["name"] = self.name
-        dic["updated_at"] = self.updated_at.isoformat()
-        dic["created_at"] = self.created_at.isoformat()
+        dic = self.__dict__.copy()
+        dic["__class__"] = self.__class__.__name__
+        if "updated_at" in dic:
+            dic["updated_at"] = self.updated_at.isoformat()
+        if "created_at" in dic:
+            dic["created_at"] = self.created_at.isoformat()
         return dic

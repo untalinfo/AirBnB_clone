@@ -2,6 +2,7 @@
 import json
 import os
 from models.base_model import BaseModel
+
 class FileStorage:
     __file_path = "file.json"
     __objects = {}
@@ -10,7 +11,6 @@ class FileStorage:
         return FileStorage.__objects
 
     def new(self, obj):
-
         key = obj.__class__.__name__ + "." + obj.id
         FileStorage.__objects[key] = obj
 

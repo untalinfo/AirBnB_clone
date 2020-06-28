@@ -66,6 +66,78 @@ class HBNBCommand(cmd.Cmd):
                     return
             print("** no instance found **")
 
+    def do_destroy(self, line):
+        """
+        Deletes an instance
+        """
+        args = str(line).split(' ')
+        if len(line) == 0:
+            print("** class name missing **")
+        elif args[0] not in HBNBCommand.my_classes:
+            print("** class doesn't exist **")
+        elif len(args) == 1:
+            print("** instance id missing **")
+        else:
+            my_id = str(args[1])
+            models.storage.reload()
+            new_dic = models.storage.all()
+            for key, value in new_dic.items():
+                if value.id == my_id:
+                   del(new_dic[key])
+                   models.storage.save()
+                   return
+            print("** no instance found **")
+
+    def do_all(self, line):
+        """
+        Prints all string representation of all instances.
+        """
+        args = str(line).split(' ')
+        if len(line) == 0:
+            list_string = []
+            models.storage.reload()
+            new_dict = models.storage.all()
+            for key, value in new_dict.items():
+                print(value.__str__())
+        elif args[0] not in HBNBCommand.my_classes:
+            print("** class doesn't exist **")
+        else:
+            models.storage.reload()
+            new_dict = models.storage.all()
+            for key, value in new_dict.items():
+                print(value.__str__())
+
+    def do_update(self, line):
+        """
+        Update an instance
+        """
+        args = str(line).split(' ')
+        if len(line) == 0:
+            print("** class name missing **")
+        elif args[0] not in HBNBCommand.my_classes:
+            print("** class doesn't exist **")
+        elif len(args) == 1:
+            print("** instance id missing **")
+        else:
+            my_id = str(args[1])
+            models.storage.reload()
+            new_dic = models.storage.all()
+            for key, value in new_dic.items():
+                if value.id == my_id:
+                    if len(args) == 2:
+                        print("** attribute name missing **")
+                        return
+                    elif len(args) == 3:
+                        print("** value missing **")
+                        return
+                    else:
+                        if hasattr(new_dic, args[3]):
+                            new_dic[args[3]] = str(args[4])
+                        models.storage.save()
+                        return                 
+            print("** no instance found **")
+        
+
     def help_quit(self):
         """
         provides information from the quit command

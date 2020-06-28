@@ -1,6 +1,6 @@
 # AirBnB_clone - Console
 
-<img src="https://i.ibb.co/wRfsyTT/the-console.png" alt="Airbnb-the_console" border="0">
+<img src="https://i.ibb.co/8mZr44H/the-console.png" alt="the-console" border="0">
 
 ## Welcome to the AirBnB clone project! (The Holberton B&B)
 

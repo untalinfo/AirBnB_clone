@@ -1,8 +1,8 @@
 # AirBnB_clone - Console
 
-<img src="https://i.ibb.co/wRfsyTT/the-console.png" alt="Airbnb-the_console" border="0" aling="center">
+<img src="https://i.ibb.co/wRfsyTT/the-console.png" alt="Airbnb-the_console" border="0">
 
-<h2 align="center"> Welcome to the AirBnB clone project! (The Holberton B&B) </h2>
+## Welcome to the AirBnB clone project! (The Holberton B&B)
 
 This project is a clone of Airbnb console
 
@@ -71,7 +71,7 @@ EOF  help  quit
 vagrant@vagrant-ubuntu-trusty-64:~/simple_shell$ |
 ```
 ## Execute commands ⌨️
-```
+
 Command | Syntax | Output
 ------- | ------ | ------
 help | `help [option]` | Displays all available commands
@@ -82,7 +82,7 @@ update | `update [class_name] [object_id] [update_key] [update_value]` or  `[cla
 show | `show [class_name] [object_id]` or `[class_name].show([object_id])()` | Displays all attributes of class_name.object_id
 all | `all [class_name]`, `[class_name].all()` | Displays every instance of class_name, if used without option displays every instance saved to the file
 destroy | `destroy [class_name] [object_id]` or `[class_name].destroy([object_id])()` | Deletes all attributes of class_name.object_id
-```
+
 ## Development environment 🛠️
 This project has been tested on Ubuntu 14.06.6 LTS
 

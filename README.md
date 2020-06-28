@@ -13,8 +13,8 @@ This project allows through a simple console (command interpreter) to create a d
 2. [How to use](#how-to-use-it-)
 3. [Test](#test-%EF%B8%8F)
 4. [Execute commands](#execute-commands-%EF%B8%8F)
-4. [Development environment](#development-environment-%EF%B8%8F)
-5. [Authors](#authors%EF%B8%8F)
+5. [Development environment](#development-environment-%EF%B8%8F)
+6. [Authors](#authors%EF%B8%8F)
 
 ## Requeriments 📋
 

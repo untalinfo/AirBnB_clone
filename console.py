@@ -44,6 +44,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             new_obj = BaseModel()
             new_obj.save()
+            print(new_obj.id)
 
     def do_show(self, line):
         """
@@ -61,9 +62,9 @@ class HBNBCommand(cmd.Cmd):
             models.storage.reload()
             for key, value in models.storage.all().items():
                 if value.id == my_id:
-                    print(id)
+                    print(value.__str__())
                     return
-            print("arregla eso")
+            print("** no instance found **")
 
     def help_quit(self):
         """

@@ -50,9 +50,8 @@ class BaseModel:
         """
         Generate a dictionary of the class
         """
-        dic = {}
-        dic["__class__"] = str(type(self).__name__)
-        dic['id'] = self.id
+        dic = self.__dict__.copy()
+        dic["__class__"] = self.__class__.__name__
         dic["updated_at"] = self.updated_at.isoformat()
         dic["created_at"] = self.created_at.isoformat()
         return dic

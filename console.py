@@ -5,6 +5,7 @@ Module the command interpreter
 import cmd
 import models
 from models.base_model import BaseModel
+import shlex 
 
 
 class HBNBCommand(cmd.Cmd):
@@ -12,7 +13,7 @@ class HBNBCommand(cmd.Cmd):
     This class contine commands
     """
     prompt = '(hbnb)'
-    my_classes = ["BaseModel", "eerwer"]
+    my_classes = ["BaseModel", "Place", "State", "City", "Amenity", "Review"]
 
     def do_quit(self, line):
         """
@@ -131,13 +132,14 @@ class HBNBCommand(cmd.Cmd):
                         print("** value missing **")
                         return
                     else:
-                        if hasattr(new_dic, args[3]):
-                            new_dic[args[3]] = str(args[4])
-                        models.storage.save()
-                        return                 
-            print("** no instance found **")
-        
-
+                        key = "{}.{}".format(args[0], args[1])
+                        try:
+                            obj = models.storage.all().get(key)
+                            setattr(models.storage.all()[key], args[2], args[3])
+                            models.storage.save()
+                        except:
+                            print("** no instance found **")
+  
     def help_quit(self):
         """
         provides information from the quit command

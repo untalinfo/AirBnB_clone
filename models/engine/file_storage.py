@@ -38,8 +38,8 @@ class FileStorage:
         serialize __objects to de JSON file
         """
         j_objects = {}
-        for key in FileStorage.__objects:
-            j_objects[key] = FileStorage.__objects[key].to_dict()
+        for key, values in FileStorage.__objects.items():
+            j_objects[key] = values.to_dict()
         with open(self.__file_path, "w") as file:
             json.dump(j_objects, file)
 

@@ -50,10 +50,8 @@ class BaseModel:
         """
         Generate a dictionary of the class
         """
-        dict_new = self.__dict__.copy()
-        dict_new["__class__"] = self.__class__.__name__
-        if "created_at" in dict_new:
-            dict_new["created_at"] = self.created_at.isoformat()
-        if "updated_at" in dict_new:
-            dict_new["updated_at"] = self.updated_at.isoformat()
-        return dict_new
+        dic = self.__dict__.copy()
+        dic["__class__"] = self.__class__.__name__
+        dic["updated_at"] = self.updated_at.isoformat()
+        dic["created_at"] = self.created_at.isoformat()
+        return dic

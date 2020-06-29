@@ -4,7 +4,6 @@ Module the command interpreter
 """
 import cmd
 import models
-import shlex
 from models.base_model import BaseModel
 
 
@@ -13,7 +12,8 @@ class HBNBCommand(cmd.Cmd):
     This class contine commands
     """
     prompt = '(hbnb) '
-    my_classes = ["BaseModel", "eerwer"]
+    my_classes = ["BaseModel", "Place", "State", "City", "Amenity", "Review",
+                  "User"]
 
     def do_quit(self, line):
         """
@@ -112,32 +112,34 @@ class HBNBCommand(cmd.Cmd):
         """
         Update an instance
         """
-        if not line:
-            args = ['']
-        else:
-            args = shlex.split(line)
-        if args[0] == '':
+        args = str(line).split(' ')
+        if len(line) == 0:
             print("** class name missing **")
-        elif not args[0] in HBNBCommand.my_classes:
+        elif args[0] not in HBNBCommand.my_classes:
             print("** class doesn't exist **")
-        elif len(args) < 2:
+        elif len(args) == 1:
             print("** instance id missing **")
-        elif len(args) < 3:
-            print("** attribute name missing **")
-        elif len(args) < 4:
-            print("** value missing **")
         else:
-            key = "{}.{}".format(args[0], args[1])
-            try:
-                obj = models.storage.all().get(key)
-                aux = setattr(models.storage.all()[key], args[2], args[3])
-                print(type(aux))
-                models.storage.save()
-            except:
-                print("** no instance found **")
-
-
-# Help of commands
+            my_id = str(args[1])
+            models.storage.reload()
+            new_dic = models.storage.all()
+            for key, value in new_dic.items():
+                if value.id == my_id:
+                    if len(args) == 2:
+                        print("** attribute name missing **")
+                        return
+                    elif len(args) == 3:
+                        print("** value missing **")
+                        return
+                    else:
+                        key = "{}.{}".format(args[0], args[1])
+                        try:
+                            obj = models.storage.all().get(key)
+                            setattr(models.storage.all()[key],
+                                    args[2], args[3])
+                            models.storage.save()
+                        except:
+                            print("** no instance found **")
 
     def help_quit(self):
         """

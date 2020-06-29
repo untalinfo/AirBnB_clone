@@ -44,8 +44,8 @@ Documented commands (type help <topic>):
 ============================================
 EOF  help  quit  show  all  update  destroy
 
-(hbnb) 
-(hbnb) 
+(hbnb)
+(hbnb)
 (hbnb) quit
 vagrant@vagrant-ubuntu-trusty-64:~/Airbnb_clone$
 ```
@@ -57,7 +57,7 @@ vagrant@vagrant-ubuntu-trusty-64:~/simple_shell$ echo "help" | ./console.py
 Documented commands (type help <topic>):
 ========================================
 EOF  help  quit
-(hbnb) 
+(hbnb)
 vagrant@vagrant-ubuntu-trusty-64:~/simple_shell$ cat test_help
 help
 vagrant@vagrant-ubuntu-trusty-64:~/simple_shell$

@@ -182,6 +182,11 @@ class HBNBCommand(cmd.Cmd):
                 my_id = my_id.split('"')[0]
                 my_str = a[0] + " " + my_id
                 self.do_show(my_str)
+            elif a[1].split("(")[0] == "destroy":
+                my_id = a[1].replace('destroy("', '')
+                my_id = my_id.split('"')[0]
+                my_str = a[0] + " " + my_id
+                self.do_destroy(my_str)
 
     def help_quit(self):
         """

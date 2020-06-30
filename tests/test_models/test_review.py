@@ -9,6 +9,7 @@ from models import review
 from models.base_model import BaseModel
 Review = review.Review
 
+
 class TestDocsB(unittest.TestCase):
     """
     check for documentation
@@ -31,6 +32,7 @@ class TestDocsB(unittest.TestCase):
         """
         for func in dir(BaseModel):
             self.assertTrue(len(func.__doc__) > 0)
+
 
 class TestRiview(unittest.TestCase):
     """

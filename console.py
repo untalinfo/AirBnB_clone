@@ -18,6 +18,7 @@ class HBNBCommand(cmd.Cmd):
     This class contine commands
     """
     prompt = '(hbnb) '
+
     my_classes = {'BaseModel': BaseModel, 'User': User, 'State': State,
                   'City': City, 'Place': Place, 'Amenity': Amenity,
                   'Review': Review}

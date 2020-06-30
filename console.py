@@ -4,6 +4,12 @@ Module the command interpreter
 """
 import cmd
 import models
+from models.user import User
+from models.state import State
+from models.city import City
+from models.place import Place
+from models.amenity import Amenity
+from models.review import Review
 from models.base_model import BaseModel
 
 
@@ -12,7 +18,10 @@ class HBNBCommand(cmd.Cmd):
     This class contine commands
     """
     prompt = '(hbnb) '
-    my_classes = ["BaseModel", "Place", "State", "City", "Amenity", "Review", "User"]
+
+    my_classes = {'BaseModel': BaseModel, 'User': User, 'State': State,
+                  'City': City, 'Place': Place, 'Amenity': Amenity,
+                  'Review': Review}
 
     def do_quit(self, line):
         """
@@ -42,7 +51,7 @@ class HBNBCommand(cmd.Cmd):
         elif args[0] not in HBNBCommand.my_classes:
             print("** class doesn't exist **")
         else:
-            new_obj = BaseModel()
+            new_obj = HBNBCommand.my_classes.get(args[0])()
             new_obj.save()
             print(new_obj.id)
 

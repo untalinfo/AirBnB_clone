@@ -144,16 +144,22 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) == 3:
             print("** value missing **")
         elif len(args) == 4:
+            m = 0
             my_str = []
             my_id = str(args[1])
             models.storage.reload()
             new_dic = models.storage.all()
             for key, value in new_dic.items():
+                if value.id == my_id:
+                    m = 1
+            if m == 1:
                 key = "{}.{}".format(args[0], args[1])
                 obj = models.storage.all().get(key)
                 setattr(obj, args[2].replace('"', ''),
                         args[3].replace('"', ''))
                 obj.save()
+            if m == 0:
+                print("** no instance found **")
 
     def default(self, args):
         a = args.split('.')

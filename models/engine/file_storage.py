@@ -2,7 +2,6 @@
 """
 Module for FileStorage class
 """
-
 import json
 import os
 from models.base_model import BaseModel
@@ -16,7 +15,7 @@ from models.user import User
 
 class FileStorage():
     """
-    serializes and deserializes instances to a JSON file
+    serializes  and deserializes instances to a JSON file
     """
     __file_path = "file.json"
     __objects = {}
@@ -48,6 +47,7 @@ class FileStorage():
         """
         deserialize the JSON file to __objects
         """
+
         if os.path.isfile(FileStorage.__file_path) is True:
             with open(FileStorage.__file_path, 'r', encoding="utf-8") as file:
                 data = json.loads(file.read())

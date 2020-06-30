@@ -36,8 +36,8 @@ class BaseModel:
         Returns:
             [str]: [Unofficial string]
         """
-        return "[{}] ({}) {}".format(
-            self.__class__.__name__, self.id, self.__dict__)
+        return "[{:s}] ({:s}) {}".format(
+            type(self).__name__, self.id, self.to_dict())
 
     def save(self):
         """
@@ -51,7 +51,7 @@ class BaseModel:
         Generate a dictionary of the class
         """
         dic = self.__dict__.copy()
-        dic["__class__"] = self.__class__.__name__
+        dic["__class__"] = type(self).__name__
         dic["updated_at"] = self.updated_at.isoformat()
         dic["created_at"] = self.created_at.isoformat()
         return dic

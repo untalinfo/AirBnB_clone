@@ -93,20 +93,25 @@ class HBNBCommand(cmd.Cmd):
         """
         Prints all string representation of all instances.
         """
+        my_str = []
         args = line.split(' ')
         if len(line) == 0:
             list_string = []
             models.storage.reload()
-            new_dict = models.storage.all()
-            for key, value in new_dict.items():
-                print(value.__str__())
+            for key, value in models.storage.all().items():
+                my_str.append(value.__str__())
+            print(my_str)
+                
+            
         elif args[0] not in HBNBCommand.my_classes:
             print("** class doesn't exist **")
         else:
             models.storage.reload()
             new_dict = models.storage.all()
             for key, value in new_dict.items():
-                print(value.__str__())
+                if args[0] == key.split('.')[0]:
+                    my_str.append(value.__str__())
+            print(my_str)
 
     def do_update(self, line):
         """
@@ -120,6 +125,7 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) == 1:
             print("** instance id missing **")
         else:
+            my_str = []
             my_id = str(args[1])
             models.storage.reload()
             new_dic = models.storage.all()
@@ -135,11 +141,30 @@ class HBNBCommand(cmd.Cmd):
                         key = "{}.{}".format(args[0], args[1])
                         try:
                             obj = models.storage.all().get(key)
-                            setattr(models.storage.all()[key],
-                                    args[2], args[3])
-                            models.storage.save()
+                            setattr(obj, args[2].replace('"', ''),
+                                    args[3].replace('"', ''))
+                            obj.save()
                         except:
                             print("** no instance found **")
+
+    def default(self, args):
+        a = args.split('.')
+        if len(a) == 2:
+            if a[1] == "all()":
+                self.do_all(a[0])
+            elif a[1] == "count()":
+                count = 0
+                my_dic = models.storage.all()
+                for key, value in my_dic.items():
+                    cl = str(key).split('.')
+                    if a[0] == cl[0]:
+                        count += 1
+                print(count)
+            elif a[1].split("(")[0] == "show":
+                  my_id = a[1].replace('show("','')
+                  my_id = my_id.split('"')[0]
+                  my_str = a[0] + " " + my_id
+                  self.do_show(my_str)
 
     def help_quit(self):
         """

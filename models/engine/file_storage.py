@@ -30,7 +30,7 @@ class FileStorage:
         """
         sets in __objects the obj with key
         """
-        key = obj.__class__.__name__ + "." + obj.id
+        key = type(obj).__name__ + "." + obj.id
         FileStorage.__objects[key] = obj
 
     def save(self):
@@ -40,17 +40,22 @@ class FileStorage:
         j_objects = {}
         for key, values in FileStorage.__objects.items():
             j_objects[key] = values.to_dict()
-        with open(self.__file_path, "w") as file:
+        with open(FileStorage.__file_path, "w") as file:
             json.dump(j_objects, file)
 
     def reload(self):
         """
         deserialize the JSON file to __objects
         """
+
         if os.path.isfile(FileStorage.__file_path) is True:
             with open(FileStorage.__file_path, 'r') as my_file:
                 data = json.loads(my_file.read())
                 for key, values in data.items():
-                    FileStorage.__objects[key] = BaseModel(**values)
+                    str_dic = eval(values['__class__'])(**values)
+                    FileStorage.__objects[key] = str_dic
         else:
             pass
+
+               
+

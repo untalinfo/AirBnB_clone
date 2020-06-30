@@ -56,6 +56,3 @@ class FileStorage:
                     FileStorage.__objects[key] = str_dic
         else:
             pass
-
-               
-

@@ -129,28 +129,30 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         elif len(args) == 1:
             print("** instance id missing **")
-        else:
-            my_str = []
+        elif len(args) == 2:
+            match = 0
             my_id = str(args[1])
             models.storage.reload()
             new_dic = models.storage.all()
             for key, value in new_dic.items():
                 if value.id == my_id:
-                    if len(args) == 2:
-                        print("** attribute name missing **")
-                        return
-                    elif len(args) == 3:
-                        print("** value missing **")
-                        return
-                    else:
-                        key = "{}.{}".format(args[0], args[1])
-                        try:
-                            obj = models.storage.all().get(key)
-                            setattr(obj, args[2].replace('"', ''),
-                                    args[3].replace('"', ''))
-                            obj.save()
-                        except:
-                            print("** no instance found **")
+                    print("** attribute name missing **")
+                    match = 1
+            if match == 0:
+                print("** no instance found **")
+        elif len(args) == 3:
+            print("** value missing **")
+        elif len(args) == 4:
+            my_str = []
+            my_id = str(args[1])
+            models.storage.reload()
+            new_dic = models.storage.all()
+            for key, value in new_dic.items():
+                key = "{}.{}".format(args[0], args[1])
+                obj = models.storage.all().get(key)
+                setattr(obj, args[2].replace('"', ''),
+                        args[3].replace('"', ''))
+                obj.save()
 
     def default(self, args):
         a = args.split('.')

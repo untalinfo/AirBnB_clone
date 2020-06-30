@@ -2,6 +2,7 @@
 """
 Module Classe base for airbnb
 """
+
 from uuid import uuid4
 from datetime import datetime
 import models
@@ -32,7 +33,6 @@ class BaseModel:
     def __str__(self):
         """
         crate a string
-
         Returns:
             [str]: [Unofficial string]
         """
@@ -52,6 +52,6 @@ class BaseModel:
         """
         dic = self.__dict__.copy()
         dic["__class__"] = type(self).__name__
-        dic["updated_at"] = self.updated_at.isoformat()
         dic["created_at"] = self.created_at.isoformat()
+        dic["updated_at"] = self.updated_at.isoformat()
         return dic

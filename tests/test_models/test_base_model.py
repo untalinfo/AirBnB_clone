@@ -44,9 +44,20 @@ class TestBaseModel(unittest.TestCase):
         result = pep8style.check_files(['models/base_model.py'])
         self.assertEqual(result.total_errors, 0, "Code style errors founded.")
 
-    def set_up(self):
+    def setUp(self):
+        """
+        initial values
+        """
         self.my_model = BaseModel()
-        
+        self.my_model.name = "Holberton"
+        self.my_model.my_number = 89
+        self.my_model_json = self.my_model.to_dict()
 
+    def test_save(self):
+        before = self.my_model.updated_at
+        self.my_model.save()
+        after = self.my_model.updated_at
+        self.assertIsNot(before, after)
+        
 if __name__ == '__main__':
     unittest.main()

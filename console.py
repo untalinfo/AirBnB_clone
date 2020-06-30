@@ -12,8 +12,7 @@ class HBNBCommand(cmd.Cmd):
     This class contine commands
     """
     prompt = '(hbnb) '
-    my_classes = ["BaseModel", "Place", "State", "City", "Amenity", "Review",
-                  "User"]
+    my_classes = ["BaseModel", "Place", "State", "City", "Amenity", "Review", "User"]
 
     def do_quit(self, line):
         """

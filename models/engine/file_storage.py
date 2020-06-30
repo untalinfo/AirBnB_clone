@@ -13,7 +13,7 @@ from models.state import State
 from models.user import User
 
 
-class FileStorage:
+class FileStorage():
     """
     serializes  and deserializes instances to a JSON file
     """
@@ -40,7 +40,7 @@ class FileStorage:
         j_objects = {}
         for key, values in FileStorage.__objects.items():
             j_objects[key] = values.to_dict()
-        with open(FileStorage.__file_path, "w") as file:
+        with open(FileStorage.__file_path, "w", encoding="utf-8") as file:
             json.dump(j_objects, file)
 
     def reload(self):
@@ -49,10 +49,8 @@ class FileStorage:
         """
 
         if os.path.isfile(FileStorage.__file_path) is True:
-            with open(FileStorage.__file_path, 'r') as my_file:
+            with open(FileStorage.__file_path, 'r', encoding="utf-8") as my_file:
                 data = json.loads(my_file.read())
                 for key, values in data.items():
                     str_dic = eval(values['__class__'])(**values)
                     FileStorage.__objects[key] = str_dic
-        else:
-            pass

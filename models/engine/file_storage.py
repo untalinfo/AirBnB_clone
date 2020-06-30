@@ -49,8 +49,8 @@ class FileStorage():
         """
 
         if os.path.isfile(FileStorage.__file_path) is True:
-            with open(FileStorage.__file_path, 'r', encoding="utf-8") as my_file:
-                data = json.loads(my_file.read())
+            with open(FileStorage.__file_path, 'r', encoding="utf-8") as file:
+                data = json.loads(file.read())
                 for key, values in data.items():
                     str_dic = eval(values['__class__'])(**values)
                     FileStorage.__objects[key] = str_dic

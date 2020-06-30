@@ -37,7 +37,7 @@ class BaseModel:
             [str]: [Unofficial string]
         """
         return "[{:s}] ({:s}) {}".format(
-            type(self).__name__, self.id, self.to_dict())
+            type(self).__name__, self.id, self.__dict__)
 
     def save(self):
         """

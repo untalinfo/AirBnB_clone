@@ -8,6 +8,7 @@ import models
 from models import base_model
 from models.base_model import BaseModel
 
+
 class TestDocsB(unittest.TestCase):
     """
     check for documentation
@@ -30,6 +31,7 @@ class TestDocsB(unittest.TestCase):
         """
         for func in dir(BaseModel):
             self.assertTrue(len(func.__doc__) > 0)
+
 
 class TestBaseModel(unittest.TestCase):
     """
@@ -58,6 +60,6 @@ class TestBaseModel(unittest.TestCase):
         self.my_model.save()
         after = self.my_model.updated_at
         self.assertIsNot(before, after)
-        
+
 if __name__ == '__main__':
     unittest.main()

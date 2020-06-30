@@ -9,6 +9,7 @@ from models import state
 from models.base_model import BaseModel
 State = state.State
 
+
 class TestDocsB(unittest.TestCase):
     """
     check for documentation
@@ -31,6 +32,7 @@ class TestDocsB(unittest.TestCase):
         """
         for func in dir(BaseModel):
             self.assertTrue(len(func.__doc__) > 0)
+
 
 class TestState(unittest.TestCase):
     """

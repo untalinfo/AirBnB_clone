@@ -68,9 +68,10 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
         else:
             my_id = str(args[1])
+            my_k = args[0]
             models.storage.reload()
             for key, value in models.storage.all().items():
-                if value.id == my_id:
+                if value.id == my_id and my_k == key.split('.')[0]:
                     print(value.__str__())
                     return
             print("** no instance found **")
@@ -87,11 +88,12 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) == 1:
             print("** instance id missing **")
         else:
+            my_k = args[0]
             my_id = str(args[1])
             models.storage.reload()
             new_dic = models.storage.all()
             for key, value in new_dic.items():
-                if value.id == my_id:
+                if value.id == my_id and my_k == key.split('.')[0]:
                     del(new_dic[key])
                     models.storage.save()
                     return
@@ -132,11 +134,12 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
         elif len(args) == 2:
             match = 0
+            my_k = args[0]
             my_id = str(args[1])
             models.storage.reload()
             new_dic = models.storage.all()
             for key, value in new_dic.items():
-                if value.id == my_id:
+                if value.id == my_id and my_k == key.split('.')[0]:
                     print("** attribute name missing **")
                     match = 1
             if match == 0:
@@ -150,7 +153,7 @@ class HBNBCommand(cmd.Cmd):
             models.storage.reload()
             new_dic = models.storage.all()
             for key, value in new_dic.items():
-                if value.id == my_id:
+                if value.id == my_id and my_k == key.split('.')[0]:
                     m = 1
             if m == 1:
                 key = "{}.{}".format(args[0], args[1])

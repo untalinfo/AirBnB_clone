@@ -147,8 +147,8 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) == 3:
             print("** value missing **")
         elif len(args) == 4:
+            my_k = args[0]
             m = 0
-            my_str = []
             my_id = str(args[1])
             models.storage.reload()
             new_dic = models.storage.all()

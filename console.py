@@ -101,8 +101,6 @@ class HBNBCommand(cmd.Cmd):
             for key, value in models.storage.all().items():
                 my_str.append(value.__str__())
             print(my_str)
-                
-            
         elif args[0] not in HBNBCommand.my_classes:
             print("** class doesn't exist **")
         else:
@@ -161,10 +159,10 @@ class HBNBCommand(cmd.Cmd):
                         count += 1
                 print(count)
             elif a[1].split("(")[0] == "show":
-                  my_id = a[1].replace('show("','')
-                  my_id = my_id.split('"')[0]
-                  my_str = a[0] + " " + my_id
-                  self.do_show(my_str)
+                my_id = a[1].replace('show("', '')
+                my_id = my_id.split('"')[0]
+                my_str = a[0] + " " + my_id
+                self.do_show(my_str)
 
     def help_quit(self):
         """

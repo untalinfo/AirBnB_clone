@@ -2,6 +2,7 @@
 """
 Test for BaseModel
 """
+import os
 import pep8
 import unittest
 import models
@@ -37,6 +38,18 @@ class TestBaseModel(unittest.TestCase):
     """
     Test BaseModel
     """
+
+    def test_exec_file(self):
+        """
+        test_exec_file method to test if file has read, write and exec
+        permissions
+        """
+        read = os.access('models/base_model.py', os.R_OK)
+        self.assertEqual(True, read)
+        write = os.access('models/base_model.py', os.W_OK)
+        self.assertEqual(True, write)
+        exec = os.access('models/base_model.py', os.X_OK)
+        self.assertEqual(True, exec)
 
     def test_pep8_state(self):
         """

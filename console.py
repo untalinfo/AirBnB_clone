@@ -187,6 +187,14 @@ class HBNBCommand(cmd.Cmd):
                 my_id = my_id.split('"')[0]
                 my_str = a[0] + " " + my_id
                 self.do_destroy(my_str)
+            elif a[1].split("(")[0] == "update":
+                my_id = a[1].replace('update("', '')
+                spt = my_id.split('"')
+                my_id = spt[0]
+                my_arg = spt[2]
+                my_value = '"' + spt[4] + '"'
+                my_str = a[0] + " " + my_id + " " + my_arg + " " + my_value
+                self.do_update(my_str)
 
     def help_quit(self):
         """

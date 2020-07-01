@@ -14,6 +14,7 @@ from models.state import State
 from models.user import User
 import json
 import pep8
+import os
 import unittest
 from models import FileStorage
 
@@ -33,6 +34,15 @@ class Test_user(unittest.TestCase):
     def test_file_storage_module_docstring(self):
         """Test for the file_storage.py module docstring"""
         self.assertIsNotNone(file_storage.__doc__, "fix a docstring")
+
+    def test_permissions(self):
+        """test read-write-execute permissions"""
+        read = os.access('models/engine/file_storage.py', os.R_OK)
+        self.assertTrue(read)
+        write = os.access('models/engine/file_storage.py', os.W_OK)
+        self.assertTrue(write)
+        exe = os.access('models/engine/file_storage.py', os.X_OK)
+        self.assertTrue(exe)
 
 
 class TestFileStorage(unittest.TestCase):

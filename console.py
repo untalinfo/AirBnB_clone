@@ -188,13 +188,28 @@ class HBNBCommand(cmd.Cmd):
                 my_str = a[0] + " " + my_id
                 self.do_destroy(my_str)
             elif a[1].split("(")[0] == "update":
-                my_id = a[1].replace('update("', '')
-                spt = my_id.split('"')
-                my_id = spt[0]
-                my_arg = spt[2]
-                my_value = '"' + spt[4] + '"'
-                my_str = a[0] + " " + my_id + " " + my_arg + " " + my_value
-                self.do_update(my_str)
+                if "{" not in a[1]:
+                    my_id = a[1].replace('update("', '')
+                    spt = my_id.split('"')
+                    my_id = spt[0]
+                    my_arg = spt[2]
+                    my_value = '"' + spt[4] + '"'
+                    my_str = a[0] + " " + my_id + " " + my_arg + " " + my_value
+                    self.do_update(my_str)
+                else:
+                    my_fr = a[1].replace('update("', '')
+                    my_i = my_fr.split('", {')[0]
+                    my_dic = my_fr.split('", {')[1]
+                    my_dic = "{" + my_dic[:-1]
+                    my_dic = eval(my_dic)
+                    str_n = a[0] + " " + my_i
+                    for key, value in my_dic.items():
+                        parameter = str_n + " " + key + " " + str(value)
+                        self.do_update(parameter)
+                    #print(dic)
+                    #print(my_i)
+                    #print(my_dic)
+                    
 
     def help_quit(self):
         """

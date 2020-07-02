@@ -206,10 +206,6 @@ class HBNBCommand(cmd.Cmd):
                     for key, value in my_dic.items():
                         parameter = str_n + " " + key + " " + str(value)
                         self.do_update(parameter)
-                    #print(dic)
-                    #print(my_i)
-                    #print(my_dic)
-                    
 
     def help_quit(self):
         """

@@ -10,9 +10,10 @@ This project allows through a simple console (command interpreter) to create a d
 
 # Table of Contents
 1. [Requeriments](#requeriments-)
-2. [How to start](#how-to-use-it-)
+2. [How to start](#How-to-start-it)
 3. [Test](#test-%EF%B8%8F)
 4. [Execute commands](#execute-commands-%EF%B8%8F)
+5. [How to use it](#how-to-use-it-)
 5. [Development environment](#development-environment-%EF%B8%8F)
 6. [Authors](#authors%EF%B8%8F)
 

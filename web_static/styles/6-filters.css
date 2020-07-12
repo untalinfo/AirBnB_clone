@@ -43,23 +43,22 @@ section.filters > div
 }
 .location
 {
-    padding-right: 4em;
+    padding-right: 7.3em;
     border-right: #DDDDDD 1px solid;
-    margin-left: 5%;
 }
 .filters h3
 {
     font-weight: 600;
-    margin: 7% 0 0 0;
+    margin: 7% 0 0 22%;
 }
 .filters h4{
     font-weight: 400;
     font-size: 14px;
-
+    margin: 0 0 0 22%;
 }
 .popover
 {
-    /* display: none; */
+  visibility: hidden;
     width: 100%;
     background-color: #FAFAFA;
     border: 1px solid #DDDDDD;
@@ -68,8 +67,36 @@ section.filters > div
     top: 17px;
     padding-left: 22%;
     padding-right: 20%;
+    padding-top: 5%;
 
 }
 .popover h2{
     font-size: 16px;
+    font-weight: 800;
+    margin: 0;
+}
+
+.location:hover .popover,
+.amenities:hover .popover
+{
+    visibility: visible;
+}
+
+.popover ul
+{
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 7px;
+}
+
+.location .popover li
+{
+    padding-left: 8%;
+    padding-top: 0;
+    margin: 2% 0;
+}
+
+.amenities .popover li
+{
+    margin: 2% 0;
 }

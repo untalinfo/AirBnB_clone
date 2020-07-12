@@ -58,7 +58,7 @@ section.filters > div
 }
 .popover
 {
-  visibility: hidden;
+    visibility: hidden;
     width: 100%;
     background-color: #FAFAFA;
     border: 1px solid #DDDDDD;
